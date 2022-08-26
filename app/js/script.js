@@ -1,22 +1,26 @@
-const open = document.getElementById('btnHamburger');
-const header = document.querySelector('.header')
-const overlay=document.querySelector('.overlay');
+const body=document.querySelector('body');
+const open = document.getElementById("btnHamburger");
+const header = document.querySelector(".header");
+const overlay = document.querySelector(".overlay");
+const fadeElems = document.querySelectorAll(".has-fade");
 
-open.addEventListener('click', ()=>{
-	console.log('ca marche');
+open.addEventListener("click", () => {
+  console.log("ca marche");
 
-	if(header.classList.contains('open')){
-		header.classList.remove('open');
-		overlay.classList.remove('fade-in');
-		overlay.classList.add('fade-out');
-
-
-	}
-	else{
-		header.classList.add("open");
-overlay.classList.add('fade-in');
-overlay.classList.remove('fade-out');
-
-	}
-
-})
+  if (header.classList.contains("open")) {
+	body.classList.remove('noscroll');
+    header.classList.remove("open");
+    fadeElems.forEach(function(element) {
+      element.classList.remove("fade-in");
+      element.classList.add("fade-out");
+    });
+  } 
+  else {
+	body.classList.add('noscroll');
+    header.classList.add("open");
+    fadeElems.forEach(function(element) {
+      element.classList.remove("fade-out");
+      element.classList.add("fade-in");
+    });
+  }
+});
